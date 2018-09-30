@@ -1,0 +1,155 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PN</title>
+
+
+  <link href={% static "base_css/dataTables.bootstrap4.min.css" %} rel="stylesheet">
+  <link href={% static "base_css/bootstrap-4-navbar.css" %} rel="stylesheet">
+  <link href={% static "base_css/bootstrap.css" %} rel="stylesheet">
+  {%block head%}
+  {%endblock%}
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="{% url 'mainapp:main' %}">
+        <img alt="logo" src="http://www.mindfulhca.com/wp-content/uploads/2017/04/Family-Room-Portal-Icon.png"width="35" height="35" >
+      </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                 Реестры
+             </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item dropdown-toggle" href="#">Серверы</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'serversapp:list_servers' %}">Все серверы</a></li>
+                <li><a class="dropdown-item" href="{% url 'serversapp:add_server' %}">Добавить новый</a></li>
+              </ul>
+            </li>
+            <li><a class="dropdown-item dropdown-toggle" href="#">Компьютеры</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'workstationsapp:list_workstations' %}">Все компьютеры</a></li>
+                <li><a class="dropdown-item" href="{% url 'workstationsapp:add_workstation' %}">Добавить новый</a></li>
+              </ul>
+            </li>
+            <li><a class="dropdown-item dropdown-toggle" href="#">Персонал</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'employeesapp:list_employees' %}">Весь персонал</a></li>
+                <li><a class="dropdown-item" href="{% url 'employeesapp:add_employee' %}">Добавить новый</a></li>
+              </ul>
+            </li>
+            <li><a class="dropdown-item dropdown-toggle" href="#">КМТ</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="{% url 'cmtapp:list_cmts' %}">Вся КМТ</a></li>
+                <li><a class="dropdown-item" href="{% url 'cmtapp:add_cmt' %}">Добавить новую</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Сотрудники
+            </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="{% url 'employeesapp:telephone_book' %}">Телефонный справочник</a>
+            <a class="dropdown-item" href="{% url 'employeesapp:birthdays' %}">Дни рождения</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Заявки
+            </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="{% url 'ticketsapp:list_tickets' %}">Все заявки</a>
+            <a class="dropdown-item" href="#">Мои заявки</a>
+            <a class="dropdown-item" href="{% url 'ticketsapp:add_ticket' %}">Подать заявку</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Администрирование
+              </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <li><a class="dropdown-item dropdown-toggle" href="#">Справочники</a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item dropdown-toggle" href="#">Подразделения</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Все подразделения</a></li>
+                    <li><a class="dropdown-item" href="#">Добавить новое</a></li>
+                  </ul>
+                </li>
+                <li><a class="dropdown-item dropdown-toggle" href="#">Отделы</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Все отделы</a></li>
+                    <li><a class="dropdown-item" href="#">Добавить новый</a></li>
+                  </ul>
+                </li>
+                <li><a class="dropdown-item dropdown-toggle" href="#">Должности</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#">Все должности</a></li>
+                    <li><a class="dropdown-item" href="#">Добавить новую</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+            <li><a class="dropdown-item" href="{% url 'adminapp:access_rights' %}">Права доступа</a></li>
+            <li><a class="dropdown-item" href="{% url 'adminapp:settings' %}">Настройки</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+    {%block navibar%}
+    <ul class="nav navbar-nav navbar-right">
+      {% if user.is_authenticated %}
+      <li class="dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <img src="https://image.flaticon.com/icons/png/512/149/149071.png" alt="Avatar" style="width:30px">  {{ user.username }}<span class="caret"></span></a>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <li><a class="dropdown-item" href="#">Настройки</a></li>
+          <div class="dropdown-divider"></div>
+          <li><a class="dropdown-item" href="#">Выйти</a></li>
+        </ul>
+      </li>
+    </ul>
+    {% else %}
+    <div class="">
+      <a <button href="#" type="button" class="btn btn-light">Войти</a>
+      <a <button href="#" type="button" class="btn btn-light">Регистрация</a>
+    </div>
+    {% endif %}
+    {%endblock navibar%}
+  </nav>
+
+  <div class="container">
+    <ol class="breadcrumb">
+      {%block navimenu%}
+      {%endblock%}
+    </ol>
+
+    {%block header%}
+    {%endblock%}
+
+
+    {%block body%}
+    {%endblock%}
+  </div>
+
+  <script src={% static "base_js/jquery.min.js" %}></script>
+  <script src={% static "base_js/bootstrap.min.js" %}></script>
+  <script src={% static "base_js/bootstrap-4-navbar.js" %}></script>
+  {%block scripts%}
+  {%endblock%}
+</body>
+
+</html>

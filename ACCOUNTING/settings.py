@@ -37,6 +37,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'mainapp',
+    'employeesapp',
+    'serversapp',
+    'cmtapp',
+    'workstationsapp',
+    'ticketsapp',
+    'adminapp',
 ]
 
 MIDDLEWARE = [
@@ -54,7 +61,7 @@ ROOT_URLCONF = 'ACCOUNTING.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'ACCOUNTING/templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -117,4 +124,20 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
+#################################################3
 STATIC_URL = '/static/'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'ACCOUNTING/media') # Путь для хранения загружаемых данных проекта
+STATIC_ROOT = os.path.join(BASE_DIR, "static/")
+
+STATICFILES_DIRS = (
+    ("base_css", os.path.join(BASE_DIR, 'ACCOUNTING/static/base/css')),
+    ("base_js", os.path.join(BASE_DIR, 'ACCOUNTING/static/base/js')),
+    ("base_fonts", os.path.join(BASE_DIR, 'ACCOUNTING/static/base/fonts')),
+) #ссылки на статические файлы проекта. Пример бращения в шаблонах к статическим файлам "base_css/style.css"
+
+#LOGIN_URL = "/auth/login/"  #прямая ссылка на страницу входа
+LOGIN_URL = "authapp:login"  #ссылка на страницу входа через имя указанное в привязке url
+LOGOUT_URL = "authapp:logout"  #ссылка на страницу выхода через имя указанное в привязке url
+LOGIN_REDIRECT_URL = "/certificates/" #прямая ссылка на страницу перенаправления после успешного входа
