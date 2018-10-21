@@ -51,4 +51,5 @@ Django==1.11
 - страница личного кабинета сотрудника
 ...
 
-# Схема моделей:
+## Схема БД / DB schema:
+[Схема БД на sqldbm.com](https://app.sqldbm.com/MySQL/Share/RS17Q73gxbq6p2omlWj6rUGFrngIE8md_DYjF4jNYw0)
