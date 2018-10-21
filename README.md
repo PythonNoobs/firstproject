@@ -3,7 +3,7 @@
 help_desk &amp; service_desk system
 
 # Requirements / Требования
-Django==1.11
+Django==1.11.15
 
 # Installation / Установка
 - Open the command line, navigate to the django app folder and execute:
