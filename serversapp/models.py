@@ -6,6 +6,9 @@ from django.db import models
 class ServerModel(models.Model):
     servermodelname = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.servermodelname
+
 
 class Server(models.Model):
     name = models.CharField(max_length=50)
@@ -16,4 +19,9 @@ class Server(models.Model):
     formfactor = models.CharField(max_length=50, choices={})
     type = models.CharField(max_length=50)
     servermodel_id = models.ForeignKey(ServerModel, on_delete=models.CASCADE)
+
     # technic_id = models.ForeignKey(Technic)
+
+    def __str__(self):
+        return 'Server {}, Model: {}, IP: {}, MacAdress: {}, Netbios: {}'.format(self.name, self.servermodel_id, self.ip, self.macadress,
+                                                                      self.netbiosname)

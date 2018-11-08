@@ -1,13 +1,47 @@
 {% extends 'base_template.html' %}
-{%block navimenu%}
-  <li class="breadcrumb-item"><a href="{% url 'mainapp:main' %}">Главная</a></li>
-  <li class="breadcrumb-item"><a href="{% url 'serversapp:list_servers' %}">Реестр серверов</a></li>
-  <li class="breadcrumb-item active" aria-current="page">{{ pagename }} </li>
-{%endblock%}
+{% block navimenu %}
+    <li class="breadcrumb-item"><a href="{% url 'mainapp:main' %}">Главная</a></li>
+    <li class="breadcrumb-item"><a href="{% url 'serversapp:list_servers' %}">Реестр серверов</a></li>
+    <li class="breadcrumb-item active" aria-current="page">{{ pagename }} </li>
+{% endblock %}
 
-{%block header%}
-<h2 style="margin-left: 20px;">{{ pagename }}</h2>
-{%endblock%}
+{% block header %}
+    <h2 style="margin-left: 20px;">{{ pagename }}</h2>
+{% endblock %}
 
-{%block body%}
-{%endblock body%}
+{% block body %}
+    <div class="">
+
+
+        <div class="col-md-12">
+            <table id="example" class="table table-hover" style="width:100;">
+                <thead>
+                <tr>
+                    <th>-</th>
+                    <th class="text-center">Server</th>
+                    <th class="text-center">IP adress</th>
+                    <th class="text-center">MAC Adress</th>
+                    <th class="text-center">NetBios</th>
+                    {#                    <th class="text-center">Сертификат</th>#}
+                </tr>
+                </thead>
+                <tbody>
+                {% for server in servers %}
+
+                    <tr>
+                        <td>{{ server.name }}</td>
+                        <td><a href="{% url 'serversapp:edit_server' %}">{{ server.name }} </a></td>
+                        <td class="text-center">{{ server.ip }}</td>
+                        <td class="text-center">{{ server.macadress }}</td>
+                        <td class="text-center">{{ server.netbiosname }}</td>
+                        {#                        <td class="text-center"><a href="/media/{{ certificate.cert_file }}">Скачать</td>#}
+                    </tr>
+
+                {% endfor %}
+                
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock body %}

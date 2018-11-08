@@ -1,9 +1,10 @@
 from django.shortcuts import render
+from .models import Server
 
 
 def list_servers(request):
-    pagename = 'Все'
-    return render(request, 'serversapp/list_servers.html', {'pagename': pagename})
+    servers = Server.objects.all()
+    return render(request, 'serversapp/list_servers.html', {'servers': servers})
 
 
 def add_server(request):
