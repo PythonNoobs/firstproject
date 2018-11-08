@@ -4,7 +4,7 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-# app_name = 'mainapp'
+app_name = 'workstationsapp'
 
 urlpatterns = [
     url(r'^$', views.list_workstations, name='list_workstations'),
