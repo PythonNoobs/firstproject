@@ -4,11 +4,12 @@ from . import views
 from django.conf import settings
 from django.conf.urls.static import static
 
-# app_name = 'mainapp'
+# app_name = 'workstationsapp'
 
 urlpatterns = [
-    url(r'^$', views.list_workstations, name='list_workstations'),
-    url(r'^edit/$', views.edit_workstation, name='edit_workstation'),
-    url(r'^add/$', views.add_workstation, name='add_workstation'),
+    url(r'^$', views.ListWorkstations.as_view(), name='list_workstations'),
+    url(r'^edit/(?P<pk>\d+)/$', views.EditWorkstation.as_view(), name='edit_workstation'),
+    url(r'^delete/(?P<pk>\d+)/$', views.DeleteWorkstation.as_view(), name='delete_workstation'),
+    url(r'^add/$', views.AddWorkstation.as_view(), name='add_workstation'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

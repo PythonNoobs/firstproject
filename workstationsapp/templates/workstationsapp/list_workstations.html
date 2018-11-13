@@ -9,5 +9,31 @@
 <h2 style="margin-left: 20px;">{{ pagename }}</h2>
 {%endblock%}
 
-{%block body%}
-{%endblock body%}
+{% block body %}
+  <table id="table_id" class="display">
+    <thead>
+        <tr>
+            <th>Наименование</th>
+            <th>Модель</th>
+            <th>Редактировать</th>
+            <th>Удалить</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for item in object_list %}
+        <tr>
+            <td>{{ item.title }}</td>
+            <td>{{ item.model }}</td>
+            <td><a href="{% url 'workstationsapp:edit_workstation' pk=item.pk %}">Редактировать</a></td>
+            <td><a href="{% url 'workstationsapp:delete_workstation' pk=item.pk %}">Удалить</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script>
+    $('#table_id').DataTable();
+  </script>
+{% endblock body %}

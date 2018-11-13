@@ -1,16 +1,32 @@
 from django.shortcuts import render
+from django.views.generic import ListView, CreateView, UpdateView, DeleteView
+from .models import Workstation
+from django.urls import reverse_lazy
 
 
-def list_workstations(request):
-    pagename = 'Все'
-    return render(request, 'workstationsapp/list_workstations.html', {'pagename': pagename})
+class ListWorkstations(ListView):
+    model = Workstation
+    template_name = 'workstationsapp/list_workstations.html'
 
 
-def add_workstation(request):
-    pagename = 'Новая рабочая станция'
-    return render(request, 'workstationsapp/add_workstation.html', {'pagename': pagename})
+class AddWorkstation(CreateView):
+    model = Workstation
+    fields = [
+        'title', 'model'
+    ]
+    template_name = 'workstationsapp/add_workstation.html'
+    success_url = reverse_lazy('workstationsapp:list_workstations')
 
 
-def edit_workstation(request):
-    pagename = 'Изменить данные рабочей станции'
-    return render(request, 'workstationsapp/edit_workstation.html', {'pagename': pagename})
+class EditWorkstation(UpdateView):
+    model = Workstation
+    fields = [
+        'title', 'model'
+    ]
+    template_name = 'workstationsapp/edit_workstation.html'
+    success_url = reverse_lazy('workstationsapp:list_workstations')
+
+
+class DeleteWorkstation(DeleteView):
+    model = Workstation
+    success_url = reverse_lazy('workstationsapp:list_workstations')
