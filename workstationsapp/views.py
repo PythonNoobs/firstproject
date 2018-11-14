@@ -27,14 +27,12 @@ class AddFromExcel(View):
             exceldata = parser.parse(tmp_file)
             default_storage.delete(path)
             for key, value in exceldata.items():
-                mod = get_object_or_404(WorkstationModel, model=value)
-                if mod:
-                    get = Workstation.objects.create(title=key, model=mod)
+                obj, created = WorkstationModel.objects.get_or_create(model=value)
+                if created:
+                    get = Workstation.objects.create(title=key, model=obj)
                     get.save()
                 else:
-                    model = WorkstationModel.objects.create(model=value)
-                    model.save()
-                    comp = Workstation.objects.create(title=key, model=model)
+                    comp = Workstation.objects.create(title=key, model=obj)
                     comp.save()
 
             url = reverse_lazy('workstationsapp:list_workstations')

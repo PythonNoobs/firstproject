@@ -3,7 +3,7 @@ from django.db import models
 
 class WorkstationModel(models.Model):
 
-    model = models.CharField(max_length=200)
+    model = models.CharField(max_length=200, unique=True)
     created_at = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
 
