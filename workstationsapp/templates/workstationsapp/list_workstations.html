@@ -1,4 +1,5 @@
 {% extends 'base_template.html' %}
+{% load static %}
 {%block navimenu%}
   <li class="breadcrumb-item"><a href="{% url 'mainapp:main' %}">Главная</a></li>
   <li class="breadcrumb-item"><a href="{% url 'workstationsapp:list_workstations' %}">Реестр рабочих станций</a></li>
@@ -30,10 +31,11 @@
     {% endfor %}
     </tbody>
 </table>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
-<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
-<script>
-    $('#table_id').DataTable();
-  </script>
 {% endblock body %}
+
+{%block scripts%}
+<script type="text/javascript" language="javascript" src={% static "base_js/jquery-3.2.1.min.js" %}></script>
+<script type="text/javascript" language="javascript" src={% static "base_js/jquery.dataTables.min.js"%} ></script>
+<script type="text/javascript" language="javascript" src={% static "base_js/dataTables.bootstrap4.min.js"%} ></script>
+<script type="text/javascript" language="javascript" src={% static "base_js/dataTables.settings.js"%} ></script>
+{%endblock scripts%}

@@ -1,5 +1,6 @@
 /*! jQuery v1.12.4 | (c) jQuery Foundation | jquery.org/license */
 $(document).ready(function() {
+    $('#table_id').DataTable();
     $('#example').DataTable({
     language: {
       processing:     "Traitement en cours...",
@@ -22,3 +23,6 @@ $(document).ready(function() {
 });
 } );
 
+$(document).ready( function () {
+    $('#table_id').DataTable();
+} );
