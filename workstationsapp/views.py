@@ -3,12 +3,13 @@ from django.core.files.storage import default_storage
 from django.core.files.base import ContentFile
 from django.conf import settings
 
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView, View
-from .models import Workstation, WorkstationModel
+from .models import Computer, ComputerModel
 from django.urls import reverse_lazy
 from .forms import ExcelForm
 from .excelparser import ExcelParser
+
 
 class AddFromExcel(View):
 
@@ -41,30 +42,30 @@ class AddFromExcel(View):
         return render(request, 'workstationsapp/excel_parser.html')
 
 
-
 class ListWorkstations(ListView):
-    model = Workstation
+
+    model = Computer
     template_name = 'workstationsapp/list_workstations.html'
 
 
 class AddWorkstation(CreateView):
-    model = Workstation
+    model = Computer
     fields = [
-        'title', 'model'
+        'name', 'inventorynum', 'serialnum', 'netbiosname', 'ip', 'macaddress', 'computermodelname'
     ]
     template_name = 'workstationsapp/add_workstation.html'
     success_url = reverse_lazy('workstationsapp:list_workstations')
 
 
 class EditWorkstation(UpdateView):
-    model = Workstation
+    model = Computer
     fields = [
-        'title', 'model'
+        'name', 'inventorynum', 'serialnum', 'netbiosname', 'ip', 'macaddress', 'computermodelname'
     ]
     template_name = 'workstationsapp/edit_workstation.html'
     success_url = reverse_lazy('workstationsapp:list_workstations')
 
 
 class DeleteWorkstation(DeleteView):
-    model = Workstation
+    model = Computer
     success_url = reverse_lazy('workstationsapp:list_workstations')
