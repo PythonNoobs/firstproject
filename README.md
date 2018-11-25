@@ -14,7 +14,7 @@ Django==1.11.15
 - move to cloned repository folder
 - python manage.py makemigrations
 - python manage.py migrate
-- django-admin createsuperuser *username*
+- python manage.py createsuperuser *username*
 - python manage.py runserver
 - Open http://127.0.0.1:8000/ in web browser.
 
