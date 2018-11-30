@@ -8,7 +8,7 @@ from django.views.generic import ListView, CreateView, UpdateView, DeleteView, V
 from .models import Computer, ComputerModel
 from django.urls import reverse_lazy
 from .forms import ExcelForm
-from .excelparser import ExcelParser
+from .excelparser import ExcelParser, SaveListToModel
 
 
 class AddFromExcel(View):
@@ -27,15 +27,7 @@ class AddFromExcel(View):
             parser = ExcelParser()
             exceldata = parser.parse(tmp_file)
             default_storage.delete(path)
-            for key, value in exceldata.items():
-                obj, created = WorkstationModel.objects.get_or_create(model=value)
-                if created:
-                    get = Workstation.objects.create(title=key, model=obj)
-                    get.save()
-                else:
-                    comp = Workstation.objects.create(title=key, model=obj)
-                    comp.save()
-
+            do = SaveListToModel(exceldata)
             url = reverse_lazy('workstationsapp:list_workstations')
             return redirect(url)
 
@@ -51,7 +43,7 @@ class ListWorkstations(ListView):
 class AddWorkstation(CreateView):
     model = Computer
     fields = [
-        'name', 'inventorynum', 'serialnum', 'netbiosname', 'ip', 'macaddress', 'computermodelname'
+        'name', 'inventorynum', 'serialnum', 'netbiosname', 'ip', 'macaddress', 'computermodel_id'
     ]
     template_name = 'workstationsapp/add_workstation.html'
     success_url = reverse_lazy('workstationsapp:list_workstations')
@@ -60,7 +52,7 @@ class AddWorkstation(CreateView):
 class EditWorkstation(UpdateView):
     model = Computer
     fields = [
-        'name', 'inventorynum', 'serialnum', 'netbiosname', 'ip', 'macaddress', 'computermodelname'
+        'name', 'inventorynum', 'serialnum', 'netbiosname', 'ip', 'macaddress', 'computermodel_id'
     ]
     template_name = 'workstationsapp/edit_workstation.html'
     success_url = reverse_lazy('workstationsapp:list_workstations')

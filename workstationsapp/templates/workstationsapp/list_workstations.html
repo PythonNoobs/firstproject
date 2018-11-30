@@ -16,6 +16,11 @@
         <tr>
             <th>Наименование</th>
             <th>Модель</th>
+            <th>Инвентарный номер</th>
+            <th>Серийный номер</th>
+            <th>NetBios</th>
+            <th>IP address</th>
+            <th>MAC address</th>
             <th>Редактировать</th>
             <th>Удалить</th>
         </tr>
@@ -23,8 +28,13 @@
     <tbody>
     {% for item in object_list %}
         <tr>
-            <td>{{ item.title }}</td>
-            <td>{{ item.model }}</td>
+            <td>{{ item.name }}</td>
+            <td>{{ item.computermodel_id }}</td>
+            <td>{{ item.inventorynum }}</td>
+            <td>{{ item.serialnum }}</td>
+            <td>{{ item.netbiosname }}</td>
+            <td>{{ item.ip }}</td>
+            <td>{{ item.macaddress }}</td>
             <td><a href="{% url 'workstationsapp:edit_workstation' pk=item.pk %}">Редактировать</a></td>
             <td><a href="{% url 'workstationsapp:delete_workstation' pk=item.pk %}">Удалить</a></td>
         </tr>

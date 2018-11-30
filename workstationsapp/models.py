@@ -25,7 +25,6 @@ class Computer(models.Model):
     netbiosname = models.CharField(max_length=200)
     ip = models.GenericIPAddressField()
     macaddress = models.CharField(max_length=30)
-    computermodelname = models.ForeignKey(ComputerModel, on_delete=models.PROTECT, related_name='+')
     computermodel_id = models.ForeignKey(ComputerModel, on_delete=models.PROTECT, related_name='+')
     created_at = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
