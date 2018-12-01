@@ -9,6 +9,7 @@ from .models import Computer, ComputerModel
 from django.urls import reverse_lazy
 from .forms import ExcelForm
 from .excelparser import ExcelParser, SaveListToModel
+from .forms import ComputerForm
 
 
 class AddFromExcel(View):
@@ -42,9 +43,10 @@ class ListWorkstations(ListView):
 
 class AddWorkstation(CreateView):
     model = Computer
-    fields = [
-        'name', 'inventorynum', 'serialnum', 'netbiosname', 'ip', 'macaddress', 'computermodel_id'
-    ]
+    # fields = [
+    #     'name', 'inventorynum', 'serialnum', 'netbiosname', 'ip', 'macaddress', 'computermodel_id'
+    # ]
+    form_class = ComputerForm
     template_name = 'workstationsapp/add_workstation.html'
     success_url = reverse_lazy('workstationsapp:list_workstations')
 
