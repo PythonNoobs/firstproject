@@ -5,7 +5,11 @@ from .models import Computer
 
 class ExcelForm(forms.Form):
 
-    file = forms.FileField(label= "Выберите excel файл для загрузки")
+    file = forms.FileField(label="Выберите excel файл для загрузки")
+
+    def __init__(self, *args, **kwargs):
+        super(ExcelForm, self).__init__(*args, **kwargs)
+        self.fields['file'].widget.attrs.update({'class': 'form-control-file'})
 
 
 class ComputerForm(ModelForm):
